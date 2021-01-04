@@ -1,0 +1,55 @@
+---
+layout: default
+---
+
+<div class="home">
+
+  {{ content }}
+
+  <!--assign_unique_tags array stores all the unique tags by iterating through all blog posts-->
+  {% assign unique_tags = "" | split: ", " %}
+
+  {% for post in site.posts %}
+    {% for tag in post.tags %}
+      {% capture tag_name %}{{ tag }}{% endcapture %}
+      {% if unique_tags contains tag_name %}
+      {% else %}
+        {% assign current_tag = tag_name | split: ", " %}
+        {% assign unique_tags = unique_tags | concat: current_tag %}
+      {% endif %}
+  
+    {% endfor %}
+  {% endfor %}
+
+  {% assign unique_tags = unique_tags | sort %}
+
+  <h2 class="project-name">All tags</h2>
+  <hr width="100%">
+  {% for item in unique_tags %}
+    <a href="/tag/{{ item }}"><button class="button button_tag_list">#{{ item }}</button></a>
+  {% endfor %}         
+  
+  <h2 class="project-name">All blog posts</h2>
+  <hr width="100%">
+
+  <!--generate a list of all blog posts-->
+  <ul class="post-list">
+    {% for post in site.posts %}
+      <li>
+        {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
+        <span class="post-meta">{{ post.date | date: date_format }}</span>
+        <h2 class="homepage">
+          <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+        </h2>
+        <span>
+          {% for tag in post.tags %}
+            {% capture tag_name %}{{ tag }}{% endcapture %}
+            <a href="/tag/{{ tag_name }}"><code class="highligher-rouge"><nobr>#{{ tag_name }}</nobr></code></a>
+          {% endfor %}
+        </span>
+        <p>{{ post.description }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+
+</div>
