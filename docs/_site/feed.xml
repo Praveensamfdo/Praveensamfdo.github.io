@@ -1,11 +1,117 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-01-03T22:19:34-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Praveen’s blog</title><subtitle>I am a graduate research assistant currently studying at Purdue University.  Main purpose of this blog is to share tech/non-tech related contemporary articles.</subtitle><author><name>Praveen Fernando</name></author><entry><title type="html">Test post title</title><link href="http://localhost:4000/post/update/2021/01/03/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Test post title" /><published>2021-01-03T14:05:57-05:00</published><updated>2021-01-03T14:05:57-05:00</updated><id>http://localhost:4000/post/update/2021/01/03/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/post/update/2021/01/03/welcome-to-jekyll.html">&lt;p&gt;Test post&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-01-04T22:34:40-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Praveen’s blog</title><subtitle>I am a graduate research assistant currently studying at Purdue University.  Main purpose of this blog is to share tech/non-tech related contemporary articles.</subtitle><author><name>Praveen Fernando</name></author><entry><title type="html">Configuring Raspberry PI as an OpenFlow switch</title><link href="http://localhost:4000/2019/02/01/Configuring-Raspberry-PI-as-an-OpenFlow-switch.html" rel="alternate" type="text/html" title="Configuring Raspberry PI as an OpenFlow switch" /><published>2019-02-01T18:29:00-05:00</published><updated>2019-02-01T18:29:00-05:00</updated><id>http://localhost:4000/2019/02/01/Configuring-Raspberry-PI-as-an-OpenFlow-switch</id><content type="html" xml:base="http://localhost:4000/2019/02/01/Configuring-Raspberry-PI-as-an-OpenFlow-switch.html">&lt;h2 id=&quot;follow-the-following-steps-to-setup-the-openflow-switch&quot;&gt;Follow the following steps to setup the OpenFlow switch&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;Download openvswitch
+    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget http://openvswitch.org/releases/openvswitch-2.5.2.tar.gz
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Unpack archive
+    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;tar&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-xvzf&lt;/span&gt; openvswitch-2.5.2.tar.gz
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Install following dependancies
+    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;apt-get &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;python-simplejson python-qt4 libssl-dev python-twisted-conch automake autoconf gcc uml-utilities libtool build-essential pkg-config
+apt-get &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;linux-headers-3.10-3-rpi
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Make the switch (Navigate to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;openvswitch-2.5.2&lt;/code&gt; and enter the following commands)
+    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;./configure &lt;span class=&quot;nt&quot;&gt;--with-linux&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/lib/modules/3.10-3-rpi/build
+make
+make &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Turn on openvswitch module
+    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;openvswitch-2.5.2/datapath/linux
+modprobe openvswitch
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Create &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ovs_script.sh&lt;/code&gt; with the following code&lt;br /&gt;
+    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
+ovsdb-server &lt;span class=&quot;nt&quot;&gt;--remote&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;punix:/usr/local/var/run/openvswitch/db.sock &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+ &lt;span class=&quot;nt&quot;&gt;--remote&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;db:Open_vSwitch,Open_vSwitch,manager_options &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+ &lt;span class=&quot;nt&quot;&gt;--private-key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;db:Open_vSwitch,SSL,private_key &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+ &lt;span class=&quot;nt&quot;&gt;--certificate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;db:Open_vSwitch,SSL,certificate &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+ &lt;span class=&quot;nt&quot;&gt;--bootstrap-ca-cert&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;db:Open_vSwitch,SSL,ca_cert &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+ &lt;span class=&quot;nt&quot;&gt;--pidfile&lt;/span&gt; –detach
+ovs-vsctl &lt;span class=&quot;nt&quot;&gt;--no-wait&lt;/span&gt; init
+ovs-vswitchd &lt;span class=&quot;nt&quot;&gt;--pidfile&lt;/span&gt; –detach
+ovs-vsctl show
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Create a file for the database, which will contain the details of the switch
+    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;touch&lt;/span&gt; /usr/local/etc/ovs-vswitchd.conf
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Create the following directory
+    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;mkdir&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; /usr/local/etc/openvswitch
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Populate the database, which will be used by the ovswitch
+    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;./openvswitch-2.5.2/ovsdb/ovsdb-tool create /usr/local/etc/openvswitch/conf.db openvswitch-2.5.2/vswitchd/vswitch.ovsschema
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ovs_script.sh&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Add a new bridge
+    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ovs-vsctl add-br br0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Bind the ports to the newly added bridge
+    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ifconfig eth1 0 up
+ifconfig eth2 0 up
+ifconfig eth3 0 up
+ifconfig eth4 0 up
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Set the interfaces up
+    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ifconfig eth1 0 up
+ifconfig eth2 0 up
+ifconfig eth3 0 up
+ifconfig eth4 0 up
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Connect the switch to an external controller
+    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ovs-vsctl set-controller br0 tcp:20.0.0.7:6634
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
 
-&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eu est in orci fringilla auctor at eget mauris. Morbi sed justo eu nulla dictum viverra. Maecenas convallis elementum mauris a dapibus. Mauris viverra bibendum augue, sit amet elementum dui condimentum at. Suspendisse interdum porta mattis. Mauris sollicitudin magna a eros rhoncus gravida. Aliquam sodales libero et ipsum pulvinar, id faucibus erat lacinia. Integer vel ex eget quam vestibulum vestibulum nec vel leo. Proin ac lorem a metus efficitur lacinia. Suspendisse feugiat sem id lobortis rutrum. Vivamus fermentum cursus orci sed cursus.&lt;/p&gt;
+&lt;h2 id=&quot;configuring-the-switch-to-initialize-as-an-openflow-switch-at-startup&quot;&gt;Configuring the switch to initialize as an OpenFlow switch at startup&lt;/h2&gt;
 
-&lt;p&gt;Sed tincidunt a libero eget imperdiet. Ut efficitur velit ut arcu porta blandit. Cras a neque sit amet ipsum volutpat hendrerit a eget augue. Morbi quis diam egestas eros scelerisque eleifend. Cras at iaculis purus, in fermentum justo. Suspendisse tincidunt, mi eget ornare placerat, augue turpis convallis dui, hendrerit mollis sapien nibh id eros. Fusce id consectetur eros, sed pretium diam. Nulla euismod, erat et consectetur venenatis, urna tortor dignissim tellus, at tincidunt lectus libero vitae massa. Interdum et malesuada fames ac ante ipsum primis in faucibus. Maecenas varius felis at mauris rutrum ultricies. Suspendisse eget consectetur sem. Etiam pulvinar dolor sit amet justo tempus, eget semper odio ultrices.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Add the following bash script to the location of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;openvswitch-2.5.2&lt;/code&gt; and rename it to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;main_script.sh&lt;/code&gt;
+    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;openvswitch-2.5.2/datapath/linux
+modprobe openvswitch
+&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ..
+&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ..
+&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ..
+./ovs_script.sh
+ifconfig eth1 0 up
+ifconfig eth2 0 up
+ifconfig eth3 0 up
+ifconfig eth4 0 up
+ifconfig br0 0 up
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Then add the following line at the end of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.bashrc&lt;/code&gt;
+    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;sh &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;location of main_script.sh]/main_script.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;Proin sollicitudin aliquet risus. Mauris sed justo sit amet nisl maximus dignissim nec et magna. Nulla finibus eros diam, vitae tincidunt orci scelerisque sed. Quisque in lacus venenatis dui rutrum malesuada. Ut ut nibh vel nisi luctus ultrices. Sed ac rutrum nisl. Etiam luctus, enim eget euismod condimentum, ante dolor sollicitudin dolor, ac auctor nulla orci et enim. Nunc ac pretium nisi. Phasellus congue blandit porttitor. Vestibulum rutrum tristique sodales. Phasellus sed rhoncus ante, vel viverra nisl. Mauris sit amet quam orci. Integer ex libero, pellentesque a turpis faucibus, tincidunt aliquet velit. Phasellus egestas purus non tincidunt faucibus.&lt;/p&gt;
+&lt;h2 id=&quot;extracting-the-hex-value-of-dpid-in-a-convenient-way&quot;&gt;Extracting the hex value of DPID in a convenient way&lt;/h2&gt;
 
-&lt;p&gt;Ut at neque at mauris venenatis euismod. Nam sit amet dignissim arcu. In porta ut ligula ac dapibus. Proin scelerisque felis non turpis rhoncus varius. Suspendisse egestas tellus nunc, porttitor viverra lorem pharetra id. Fusce id lacus id felis maximus pellentesque a non tortor. Donec lacinia sagittis nunc, ac ultricies purus congue eget. Vivamus a orci purus.&lt;/p&gt;
-
-&lt;p&gt;Cras in nibh vel orci luctus sodales id nec velit. Pellentesque vitae leo lacus. Maecenas condimentum lorem in urna varius pulvinar. Mauris faucibus nunc nec erat faucibus bibendum. Nullam et efficitur lorem. Proin pharetra fringilla est vel pretium. Suspendisse eu elit ante.&lt;/p&gt;</content><author><name>Praveen Fernando</name></author><category term="aa" /><category term="bb" /><category term="cc" /><category term="dd" /><category term="ee" /><category term="ff" /><category term="gg" /><category term="hh" /><category term="ii" /><category term="jj" /><category term="kk" /><category term="ll" /><category term="mm" /><category term="nn" /><category term="oo" /><category term="pp" /><category term="qq" /><category term="rr" /><category term="ss" /><category term="tt" /><category term="uu" /><category term="vv" /><category term="ww" /><category term="xx" /><category term="yy" /><category term="zz" /><summary type="html">Test post</summary></entry></feed>
+&lt;ul&gt;
+  &lt;li&gt;add the following file to an arbitrary location and rename it to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dpid.sh&lt;/code&gt;
+    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat&lt;/span&gt; /sys/class/net/br0/address&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;output&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$var&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;tr&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--delete&lt;/span&gt; :&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;DPID : &quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;$((&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;x&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;output&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Then run the above script using the following command
+    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sh dpid.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Praveen Fernando</name></author><category term="sdn" /><category term="raspberrypi" /><category term="openflow" /><summary type="html">Follow the following steps to setup the OpenFlow switch Download openvswitch wget http://openvswitch.org/releases/openvswitch-2.5.2.tar.gz</summary></entry></feed>
