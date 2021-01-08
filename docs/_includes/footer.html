@@ -22,5 +22,8 @@
       </li>
     {% endif %}
   </ul>
-  <!--<span class="site-footer-credits">Copyright © {{ site.time | date: '%Y' }} {{ site.author }}</span>-->
+
+  {% if site.add_copyright == true %}
+    <span class="site-footer-credits">Copyright © {{ site.time | date: '%Y' }} {{ site.author }}</span>
+  {% endif %}
 </footer>
