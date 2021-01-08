@@ -3,4 +3,6 @@ layout: page
 title: About me
 permalink: /about
 ---
-Under construction
+I am a research assistant at the Department of Computer and Information Technology – Purdue University. Before that, I was a research assistant
+at The University of Akron. I did my undergraduate studies at University of Moratuwa and obtained a BSc degree in Electronic and Telecommunication 
+engineering in 2017.
