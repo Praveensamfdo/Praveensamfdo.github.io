@@ -23,7 +23,7 @@ twitter_username: praveensamfdo
 github_username:  Praveensamfdo
 facebook_username: praveen.fernando.33/
 author: Praveen Fernando
-add_copyright: false  #set this to true, if the copyright section needs to be shown in the footer
+add_copyright: true  #set this to true, if the copyright section needs to be shown in the footer
 
 # Build settings
 markdown: kramdown
