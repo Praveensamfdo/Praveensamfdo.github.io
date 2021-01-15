@@ -117,7 +117,7 @@ sudo sh [location of main_script.sh]/main_script.sh
 
 ## Extracting the hex value of DPID in a convenient way
 
-- add the following file to an arbitrary location and rename it to `dpid.sh`
+- Add the following file to an arbitrary location and rename it to `dpid.sh`
 ```shell
 #!/bin/bash
 var=$(cat /sys/class/net/br0/address)
