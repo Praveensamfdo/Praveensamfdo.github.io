@@ -13,4 +13,4 @@ RSA is basically used to achieve two tasks.
 
 Let's discuss RSA based on the following scenario for the sake of clarity.
 
-<img src = "/docs/assets/post_images/rsa_overall.png">
+![](/assets/india_team.jpg)
