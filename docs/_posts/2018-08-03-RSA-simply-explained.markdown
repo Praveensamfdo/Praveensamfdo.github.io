@@ -39,3 +39,24 @@ One can identify some major vulnerabilities when analyzing the above scenario.
 
 To address the above two issues, there is a concept called **Digital Signature**.
 
+## 2. Digital Signature Explained
+
+Let’s assume that Will wants to send a message to Smith. Then Digital Signature is achieved as follows.
+
+
+1. Will(sender) sends his public key to Smith.
+1. Will generates a digest by hashing his message using a hashing algorithm (Ex: MD5, SHA-256).
+1. Will uses his private key to encrypt the digest and generates the Digital Signature.
+1. Both the original message and the Digital Signature is sent to the receiver.
+1. Upon arrival, Smith tries to decrypt the digital signature using the claimed sender’s public key.
+	-  If he succeeds to encrypt then he can be sure that the message has been originated from the claimed sender.
+	-  If not, the message has been originated from some other source.
+1. Smith hashes the received message and compares it with the received digest decrypted from step 05.
+	- If two digests match, then the received message has not been tampered during transmission.
+	- If they don’t match, then the message has been tampered.
+
+![](/assets/post_images/rsa_2.png)
+
+The user authentication and message integrity are achieved via step 05 and 06 respectively.
+
+
