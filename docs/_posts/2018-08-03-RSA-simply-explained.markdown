@@ -59,4 +59,22 @@ Let’s assume that Will wants to send a message to Smith. Then Digital Signatur
 
 The user authentication and message integrity are achieved via step 05 and 06 respectively.
 
+## 3. RSA explained
 
+In RSA, both the digital signature and public-key encryption is achieved as follows.
+
+
+1. Will and Smith exchange their public keys.
+1. Will generates a digest by hashing his message using a hashing algorithm (Ex: MD5, SHA-256).
+1. Will uses his private key to encrypt the digest and generates the Digital Signature.
+1. Will uses Smith’s public key to encrypt the message.
+1. Both the encrypted message and the Digital Signature is sent to the receiver.
+1. Upon arrival, Smith tries to decrypt the digital signature using the claimed sender’s public key.
+	- If he succeeds to encrypt then he can be sure that the message has been originated from the claimed sender.
+	- If not, the message has been originated from some other source.
+1. Smith decrypts the message using his private key.
+1. Smith hashes the decrypted message and compares it with the received digest decrypted from step 06.
+	- If two digests match, then the received message has not been tampered during transmission.
+	- If they don’t match, then the message has been tampered.
+
+![](/assets/post_images/rsa_final.png)
