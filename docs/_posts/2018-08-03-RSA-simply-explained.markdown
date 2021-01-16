@@ -55,7 +55,7 @@ Let’s assume that Will wants to send a message to Smith. Then Digital Signatur
 	- If two digests match, then the received message has not been tampered during transmission.
 	- If they don’t match, then the message has been tampered.
 
-![](/assets/post_images/rsa_2.png)
+![](/assets/post_images/rsa_digital_signature.png)
 
 The user authentication and message integrity are achieved via step 05 and 06 respectively.
 
