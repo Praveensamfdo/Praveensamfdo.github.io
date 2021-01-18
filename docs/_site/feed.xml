@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-01-08T14:42:59-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Praveen’s blog</title><subtitle>I am a graduate research assistant currently studying at Purdue University.  Main purpose of this blog is to share tech/non-tech related contemporary articles.</subtitle><author><name>Praveen Fernando</name></author><entry><title type="html">Configuring Raspberry PI as an OpenFlow switch</title><link href="http://localhost:4000/2019/02/01/Configuring-Raspberry-PI-as-an-OpenFlow-switch.html" rel="alternate" type="text/html" title="Configuring Raspberry PI as an OpenFlow switch" /><published>2019-02-01T18:29:00-05:00</published><updated>2019-02-01T18:29:00-05:00</updated><id>http://localhost:4000/2019/02/01/Configuring-Raspberry-PI-as-an-OpenFlow-switch</id><content type="html" xml:base="http://localhost:4000/2019/02/01/Configuring-Raspberry-PI-as-an-OpenFlow-switch.html">&lt;h2 id=&quot;follow-the-following-steps-to-setup-the-openflow-switch&quot;&gt;Follow the following steps to setup the OpenFlow switch&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-01-18T16:44:48-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Praveen’s blog</title><subtitle>I am a graduate research assistant currently studying at Purdue University.  Main purpose of this blog is to share tech/non-tech related contemporary articles.</subtitle><author><name>Praveen Fernando</name></author><entry><title type="html">Important fundamentals of probability for machine learning</title><link href="http://localhost:4000/2021/01/18/Important-fundamentals-of-probability-for-machine-learning.html" rel="alternate" type="text/html" title="Important fundamentals of probability for machine learning" /><published>2021-01-18T12:00:00-05:00</published><updated>2021-01-18T12:00:00-05:00</updated><id>http://localhost:4000/2021/01/18/Important-fundamentals-of-probability-for-machine-learning</id><content type="html" xml:base="http://localhost:4000/2021/01/18/Important-fundamentals-of-probability-for-machine-learning.html">&lt;p&gt;Content coming soon…&lt;/p&gt;</content><author><name>Praveen Fernando</name></author><category term="probability" /><category term="machinelearning" /><summary type="html">Content coming soon…</summary></entry><entry><title type="html">Configuring Raspberry PI as an OpenFlow switch</title><link href="http://localhost:4000/2019/02/01/Configuring-Raspberry-PI-as-an-OpenFlow-switch.html" rel="alternate" type="text/html" title="Configuring Raspberry PI as an OpenFlow switch" /><published>2019-02-01T18:29:00-05:00</published><updated>2019-02-01T18:29:00-05:00</updated><id>http://localhost:4000/2019/02/01/Configuring-Raspberry-PI-as-an-OpenFlow-switch</id><content type="html" xml:base="http://localhost:4000/2019/02/01/Configuring-Raspberry-PI-as-an-OpenFlow-switch.html">&lt;h2 id=&quot;follow-the-following-steps-to-setup-the-openflow-switch&quot;&gt;Follow the following steps to setup the OpenFlow switch&lt;/h2&gt;
 &lt;ol&gt;
   &lt;li&gt;Download openvswitch
     &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget http://openvswitch.org/releases/openvswitch-2.5.2.tar.gz
@@ -103,7 +103,7 @@ ifconfig br0 0 up
 &lt;h2 id=&quot;extracting-the-hex-value-of-dpid-in-a-convenient-way&quot;&gt;Extracting the hex value of DPID in a convenient way&lt;/h2&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;add the following file to an arbitrary location and rename it to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dpid.sh&lt;/code&gt;
+  &lt;li&gt;Add the following file to an arbitrary location and rename it to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dpid.sh&lt;/code&gt;
     &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
 &lt;span class=&quot;nv&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat&lt;/span&gt; /sys/class/net/br0/address&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;nv&quot;&gt;output&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$var&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;tr&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--delete&lt;/span&gt; :&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
@@ -114,4 +114,96 @@ ifconfig br0 0 up
     &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sh dpid.sh
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Praveen Fernando</name></author><category term="sdn" /><category term="raspberrypi" /><category term="openflow" /><summary type="html">Follow the following steps to setup the OpenFlow switch Download openvswitch wget http://openvswitch.org/releases/openvswitch-2.5.2.tar.gz</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>Praveen Fernando</name></author><category term="sdn" /><category term="raspberrypi" /><category term="openflow" /><summary type="html">Follow the following steps to setup the OpenFlow switch Download openvswitch wget http://openvswitch.org/releases/openvswitch-2.5.2.tar.gz</summary></entry><entry><title type="html">RSA simply explained</title><link href="http://localhost:4000/2018/08/02/RSA-simply-explained.html" rel="alternate" type="text/html" title="RSA simply explained" /><published>2018-08-02T22:40:00-04:00</published><updated>2018-08-02T22:40:00-04:00</updated><id>http://localhost:4000/2018/08/02/RSA-simply-explained</id><content type="html" xml:base="http://localhost:4000/2018/08/02/RSA-simply-explained.html">&lt;p&gt;RSA is an asymmetric key cryptosystem, where a public key and a private key is involved.&lt;/p&gt;
+
+&lt;p&gt;RSA is basically used to achieve two tasks.&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;To achieve public-key encryption&lt;/li&gt;
+  &lt;li&gt;To support digital signature&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Let’s discuss RSA based on the following scenario for the sake of clarity.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/post_images/rsa_overall.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;1-public-key-encryption-explained&quot;&gt;1. Public-key encryption explained&lt;/h2&gt;
+
+&lt;p&gt;Public-key encryption is used to encrypt the sender’s message.
+Let’s assume that Will wants to send a message to Smith. Then the encryption operation can be described as follows.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Smith(receiver) sends his public key to Will.&lt;/li&gt;
+  &lt;li&gt;Will(sender) uses that key to encrypt the message.&lt;/li&gt;
+  &lt;li&gt;Encrypted message is sent to Smith.&lt;/li&gt;
+  &lt;li&gt;Smith uses his private key to decrypt the message.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/post_images/rsa_1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Hence it can be clearly seen that, possessing of Smith’s public key can enable any sender to send an encrypted message to Smith.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/post_images/rsa_2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This is the public-key encryption in a nutshell.
+One can identify some major vulnerabilities when analyzing the above scenario.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Authentication problem – Receiver can’t guarantee that the message he received is via the claimed sender.&lt;/li&gt;
+  &lt;li&gt;Integrity problem – An attacker can tamper an encrypted message, as there is no way for receiver to check the integrity of the incoming message.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;To address the above two issues, there is a concept called &lt;strong&gt;Digital Signature&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;2-digital-signature-explained&quot;&gt;2. Digital Signature Explained&lt;/h2&gt;
+
+&lt;p&gt;Let’s assume that Will wants to send a message to Smith. Then Digital Signature is achieved as follows.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Will(sender) sends his public key to Smith.&lt;/li&gt;
+  &lt;li&gt;Will generates a digest by hashing his message using a hashing algorithm (Ex: MD5, SHA-256).&lt;/li&gt;
+  &lt;li&gt;Will uses his private key to encrypt the digest and generates the Digital Signature.&lt;/li&gt;
+  &lt;li&gt;Both the original message and the Digital Signature is sent to the receiver.&lt;/li&gt;
+  &lt;li&gt;Upon arrival, Smith tries to decrypt the digital signature using the claimed sender’s public key.
+    &lt;ul&gt;
+      &lt;li&gt;If he succeeds to encrypt then he can be sure that the message has been originated from the claimed sender.&lt;/li&gt;
+      &lt;li&gt;If not, the message has been originated from some other source.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Smith hashes the received message and compares it with the received digest decrypted from step 05.
+    &lt;ul&gt;
+      &lt;li&gt;If two digests match, then the received message has not been tampered during transmission.&lt;/li&gt;
+      &lt;li&gt;If they don’t match, then the message has been tampered.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/post_images/rsa_digital_signature.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The user authentication and message integrity are achieved via step 05 and 06 respectively.&lt;/p&gt;
+
+&lt;h2 id=&quot;3-rsa-explained&quot;&gt;3. RSA explained&lt;/h2&gt;
+
+&lt;p&gt;In RSA, both the digital signature and public-key encryption is achieved as follows.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Will and Smith exchange their public keys.&lt;/li&gt;
+  &lt;li&gt;Will generates a digest by hashing his message using a hashing algorithm (Ex: MD5, SHA-256).&lt;/li&gt;
+  &lt;li&gt;Will uses his private key to encrypt the digest and generates the Digital Signature.&lt;/li&gt;
+  &lt;li&gt;Will uses Smith’s public key to encrypt the message.&lt;/li&gt;
+  &lt;li&gt;Both the encrypted message and the Digital Signature is sent to the receiver.&lt;/li&gt;
+  &lt;li&gt;Upon arrival, Smith tries to decrypt the digital signature using the claimed sender’s public key.
+    &lt;ul&gt;
+      &lt;li&gt;If he succeeds to encrypt then he can be sure that the message has been originated from the claimed sender.&lt;/li&gt;
+      &lt;li&gt;If not, the message has been originated from some other source.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Smith decrypts the message using his private key.&lt;/li&gt;
+  &lt;li&gt;Smith hashes the decrypted message and compares it with the received digest decrypted from step 06.
+    &lt;ul&gt;
+      &lt;li&gt;If two digests match, then the received message has not been tampered during transmission.&lt;/li&gt;
+      &lt;li&gt;If they don’t match, then the message has been tampered.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/post_images/rsa_final.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;</content><author><name>Praveen Fernando</name></author><category term="security" /><category term="encryption" /><summary type="html">RSA is an asymmetric key cryptosystem, where a public key and a private key is involved.</summary></entry></feed>
