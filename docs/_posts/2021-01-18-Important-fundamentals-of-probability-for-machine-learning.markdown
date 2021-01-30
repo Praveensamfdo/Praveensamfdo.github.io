@@ -5,4 +5,4 @@ date: 2021-01-18 17:00:00 +0000
 tags: probability machinelearning
 description: "description coming soon"
 ---
-Content coming soon...
+## Log likelihood function
