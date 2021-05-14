@@ -2,7 +2,7 @@
 layout: post
 title: "Setting seed in a ML simulation"
 date: 2021-05-14 01:12:00 +0000
-tags: ml
+tags: machinelearning
 description: "A code snippet and tips for setting the seed in a ML python script"
 ---
 Use the following code snippet to set the seed in a python machine learning script.
