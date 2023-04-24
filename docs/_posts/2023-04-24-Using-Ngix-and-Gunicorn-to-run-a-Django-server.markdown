@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "Setting seed in a ML simulation"
-date: 2021-05-14 01:12:00 +0000
-tags: machinelearning
-description: "A code snippet and tips for setting the seed in a ML python script"
+title: "Using Nginx and Gunicorn to run a Django server"
+date: 2023-04-24 11:45:00 +0000
+tags: servers
+description: "An Nginx front facing server with a Gunicorn backend serving a Django server"
 ---
 Use the following code snippet to set the seed in a python machine learning script.
 
