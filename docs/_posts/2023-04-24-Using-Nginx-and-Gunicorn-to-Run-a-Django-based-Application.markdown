@@ -228,7 +228,7 @@ urlpatterns = [
   ```
 
   - `run_docker_prod.sh`:
-  
+
   ```
   echo killing old docker processes
   docker-compose rm -fs
@@ -243,4 +243,8 @@ urlpatterns = [
 - After any modifications to the Django app, run the following two commands from the base directory when containers are running to ensure that the changes take effect:
   - `docker-compose exec wsgi sh -c "cd django_app && python3 manage.py makemigrations"`
   - `docker-compose exec wsgi sh -c "cd django_app && python3 manage.py migrate"`
-- If you need to backup a database to a SQL file, run the following command while the containers are running: `docker exec <database container name> pg_dump -U <user name> -d <database name> > <backup file name>.sql`.
+- If you need to backup a database to a SQL file, run `db_backup.sh` while the containers are running. The file can be given as follows:
+
+  ```
+  docker exec <database container name> pg_dump -U <user name> -d <database name> > <backup file name>.sql
+  ``` 
