@@ -109,7 +109,7 @@ services:
 
 # Nginx server configuration
 
-For the Nginx webserver, the `nginx` directory contains the docker file to start the Nginx container and the configuration file for the Nginx web server. The nginx configuration file (`nginx.conf`) can be given as follows: 
+- For the Nginx webserver, the `nginx` directory contains the docker file to start the Nginx container and the configuration file for the Nginx web server. The nginx configuration file (`nginx.conf`) can be given as follows: 
 
 ```
 # Define an upstream group of backend servers for load balancing (list the backend Django servers here)
