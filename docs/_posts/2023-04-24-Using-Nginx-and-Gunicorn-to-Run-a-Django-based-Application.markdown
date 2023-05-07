@@ -189,8 +189,8 @@ COPY . /app
 RUN pip install --no-cache-dir -r requirements.txt
 ```
 
--This file starts a container, installs necessary Linux packages, set the working directory, and finally installs Python packages stated in the `requirements.txt`.
--There are also some important configurations that need to be set up in the `settings.py` file in `wsgi/django_app/main_app`. They are as follows:
+- This file starts a container, installs necessary Linux packages, set the working directory, and finally installs Python packages stated in the `requirements.txt`.
+- There are also some important configurations that need to be set up in the `settings.py` file in `wsgi/django_app/main_app`. They are as follows:
 
 ```
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -216,7 +216,24 @@ urlpatterns = [
 - The above lines instruct Django to serve static files from the `STATIC_ROOT` directory at the `STATIC_URL` endpoint.
 
 # Final remarks
-- In a nutshell, we only need to run `docker_run_rpod.sh` or `docker_run_dev.sh` (for development purposes with attached mode to view logs) to run our application. 
+- In a nutshell, we only need to run `docker_run_rpod.sh` or `docker_run_dev.sh` (for development purposes with attached mode to view logs) to run our application. These files are as follows:
+  - `run_docker_dev.sh`:
+  ```
+  echo killing old docker processes
+  docker-compose rm -fs
+
+  echo building docker containers
+  docker-compose up --build --remove-orphans
+  ```
+  - `run_docker_prod.sh`:
+  ```
+  echo killing old docker processes
+  docker-compose rm -fs
+
+  echo building docker containers
+  docker-compose up --build -d --remove-orphans
+  ```
+
 - Also note that these configurations have been tested on `docker-compose version 1.29.2`.
 - To view the status of the docker containers, use the command: `docker-compose ps` from the base directory.
 - To remove all containers created by the docker-compose.yml file, use the command: `docker-compose rm -fs` from the base directory.
