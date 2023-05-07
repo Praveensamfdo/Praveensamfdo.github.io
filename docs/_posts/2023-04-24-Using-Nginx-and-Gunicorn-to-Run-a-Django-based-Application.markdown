@@ -218,6 +218,7 @@ urlpatterns = [
 # Final remarks
 - In a nutshell, we only need to run `docker_run_rpod.sh` or `docker_run_dev.sh` (for development purposes with attached mode to view logs) to run our application. These files are as follows:
   - `run_docker_dev.sh`:
+
   ```
   echo killing old docker processes
   docker-compose rm -fs
@@ -225,7 +226,9 @@ urlpatterns = [
   echo building docker containers
   docker-compose up --build --remove-orphans
   ```
+
   - `run_docker_prod.sh`:
+  
   ```
   echo killing old docker processes
   docker-compose rm -fs
