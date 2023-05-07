@@ -169,6 +169,7 @@ CMD ["nginx", "-g", "daemon off;"]
 
 # WSGI server configuration
 - The docker file for Nginx server is as follows:
+
 ```
 # Get the base image 
 FROM nvidia/cuda:12.1.1-cudnn8-devel-ubuntu20.04
@@ -187,6 +188,7 @@ COPY . /app
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 ```
+
 -This file starts a container, installs necessary Linux packages, set the working directory, and finally installs Python packages stated in the `requirements.txt`.
 -There are also some important configurations that need to be set up in the `settings.py` file in `wsgi/django_app/main_app`. They are as follows:
 
