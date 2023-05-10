@@ -125,6 +125,9 @@ server {
     # Specify SSL certificate and key for HTTPS encryption
     ssl_certificate /app/<ssl certificate file>.pem;
     ssl_certificate_key /app/<ssl certificate key file>.key;
+    
+    # Set the client body buffer size to 10 megabytes
+    client_body_buffer_size 10M;
 
     # Proxy incoming requests to the backend servers using load balancing
     location / {
