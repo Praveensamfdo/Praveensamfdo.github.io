@@ -72,7 +72,7 @@ services:
           - driver: nvidia
             count: 1
             capabilities: [gpu]
-    command: gunicorn -w <number of workers. ex: 5> -b 0.0.0.0:<wsgi container port> main_app.wsgi:application --chdir 'django_app'
+    command: gunicorn -w <number of workers. ex: 5> -b 0.0.0.0:<wsgi container port> main_app.wsgi:application --chdir 'django_app' --access-logfile -
     depends_on:
       - projdb
 
