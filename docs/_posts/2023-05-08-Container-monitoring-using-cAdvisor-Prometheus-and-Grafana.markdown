@@ -98,4 +98,5 @@ docker-compose up --build --remove-orphans -d
 
 - At this point, the Grafana dashboard is available at `http://localhost:3000`. Log in to Grafana and add the prometheus data source at `http://prometheus:9090` and create dashboards of your choice using different queries.
   - Example query for Bytes received per second: `rate(container_network_receive_bytes_total{name=~"container1|container2|container3"}[1m])`, where `container1`, `container2`, and `container3` are the names of the containers to be monitored.
+  - In container monitoring, when containers are stopped and started again, another time series is created since the container IDs change. Therefore, to aggregate the different time series using container name, you can use a query as follows: `label_replace(sum(rate(container_network_receive_bytes_total{image!="",name=~"container1"}[1m])) by (name), "name", "$1", "container_id", "(.*)")`.
 
