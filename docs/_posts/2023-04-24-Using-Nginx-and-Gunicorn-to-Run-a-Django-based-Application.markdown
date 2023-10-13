@@ -90,7 +90,9 @@ services:
         target: /app/static
 
   projdb:
-    image: postgres:latest
+    image: postgres:15.0
+    ports:
+      - "5432:5432"
     volumes:
       - type: bind
         source: ./database
